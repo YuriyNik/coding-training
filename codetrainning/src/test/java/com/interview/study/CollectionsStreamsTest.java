@@ -39,7 +39,7 @@ public class CollectionsStreamsTest {
                 new Employee("Diana", "HR", 50)
         );
 //        {HR=150, IT=200}
-        Map<String, Integer> maxsalaryByDep = employees.stream().collect(
+        Map<String, Integer> maxSalaryByDep = employees.stream().collect(
             Collectors.groupingBy(
                     Employee::dept,
                     Collectors.collectingAndThen(
@@ -48,7 +48,17 @@ public class CollectionsStreamsTest {
                     )
             )
         );
-        System.out.println(maxsalaryByDep);
+        System.out.println(maxSalaryByDep);
+        System.out.println(employees);
+
+        Map<String, Integer> maxSalaryByDep2 = employees.stream()
+                .collect(Collectors.toMap(
+                        Employee::dept,
+                        Employee::salary,
+                        Integer::max
+                ));
+        System.out.println(maxSalaryByDep2);
+        System.out.println(employees);
 
     }
 }

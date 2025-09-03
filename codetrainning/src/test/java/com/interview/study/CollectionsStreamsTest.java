@@ -2,6 +2,7 @@ package com.interview.study;
 
 import org.junit.jupiter.api.Test;
 
+import java.security.KeyStore;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -60,5 +61,21 @@ public class CollectionsStreamsTest {
         System.out.println(maxSalaryByDep2);
         System.out.println(employees);
 
+    }
+
+    @Test
+    void secondPortion(){
+        List<String> words = List.of("a","b","a","c","b","a","d","d","d","b");
+        int k = 2;
+
+        List<Map.Entry<String,Long>> result = words.stream()
+                .collect(Collectors.groupingBy(
+                        Function.identity(), Collectors.counting()
+                ))
+                .entrySet().stream()
+                .sorted((e1, e2) -> Long.compare(e2.getValue(), e1.getValue())) // по убыванию
+                .limit(k)
+                .toList();
+        System.out.println(result);
     }
 }

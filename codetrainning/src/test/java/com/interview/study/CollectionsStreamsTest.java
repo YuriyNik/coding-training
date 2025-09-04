@@ -2,10 +2,7 @@ package com.interview.study;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -38,7 +35,41 @@ public class CollectionsStreamsTest {
         System.out.println(filterEven(integerList));
         System.out.println(squares(integerList));
         System.out.println(sum(integerList));
+        System.out.println(max(integerList));
      }
+    public static Optional<Integer> max(List<Integer> nums) {
+        return nums.stream()
+                .max(Integer::compareTo);
+    }
+
+    public static String join(List<String> words) {
+        return words.stream()
+                .collect(Collectors.joining(""));
+    }
+    public static long countLongWords(List<String> words) {
+        return words.stream()
+                .filter(w-> w.length()>3)
+                .count();
+    }
+
+    @Test
+    void testStreamPart2() {
+        List<String> words = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add("a"+i);
+            words.add("Word"+i);
+        }
+        words.add("");
+
+        System.out.println(words.stream().allMatch(w -> !w.isEmpty()));
+        System.out.println(words.stream().noneMatch(w -> w.length() > 100));
+
+        System.out.println(words);
+        System.out.println(join(words));
+        System.out.println(countLongWords(words));
+
+
+    }
 
     @Test
     void tasksCollectionsStreamsTest(){

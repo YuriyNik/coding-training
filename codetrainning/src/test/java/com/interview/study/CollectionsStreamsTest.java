@@ -2,14 +2,43 @@ package com.interview.study;
 
 import org.junit.jupiter.api.Test;
 
-import java.security.KeyStore;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class CollectionsStreamsTest {
+
+    public static List<Integer> filterEven(List<Integer> nums) {
+        return nums.stream()
+                .filter(n -> n%2==0)
+                .toList();
+    }
+    public static List<Integer> squares(List<Integer> nums) {
+        return nums.stream()
+                .map(n -> n * n)
+                .toList();
+    }
+
+    public static int sum(List<Integer> nums){
+        return nums.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+    @Test
+     void warmUPTasks(){
+         List<Integer> integerList = new ArrayList<>();
+         for (int i = 0; i < 10; i++) {
+             integerList.add(i);
+         }
+        System.out.println(filterEven(integerList));
+        System.out.println(squares(integerList));
+        System.out.println(sum(integerList));
+     }
 
     @Test
     void tasksCollectionsStreamsTest(){
